@@ -1,0 +1,9 @@
+# Go binary
+yaml2json
+
+# Compiled Python bytecode
+*.pyc
+
+# Temporary editor files
+*~
+*.sw?

@@ -14,13 +14,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Runs all the YAML -> JSON tests in both Python and Go.
+# Runs all the YAML -> JSON tests in Python.
 
 declare -i py_passed=0
 declare -i py_total=0
-
-declare -i go_passed=0
-declare -i go_total=0
 
 for yaml in testdata/*.yaml; do
   json="${yaml/%.yaml}.json"
@@ -33,20 +30,10 @@ for yaml in testdata/*.yaml; do
     echo
   fi
   (( py_total += 1 ))
-
-  echo "Testing: ${yaml} in Go ..."
-  diff -u <(./yaml2json < "${yaml}") "${json}"
-  if [ $? -eq 0 ];  then
-    (( go_passed += 1 ))
-  else
-    echo
-  fi
-  (( go_total += 1 ))
 done
 
 echo "Python: ${py_passed} / ${py_total} passed"
-echo "Go:     ${go_passed} / ${go_total} passed"
 
-if [ ${py_passed} -ne ${py_total} ] || [ ${go_passed} -ne ${go_total} ]; then
-	exit 1
+if [ ${py_passed} -ne ${py_total} ]; then
+  exit 1
 fi

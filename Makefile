@@ -48,6 +48,9 @@ py_yaml_to_json_test:
 	$(VERB) ./py_yaml_to_json_test.sh
 	$(VERB) echo
 
+gofmt:
+	$(VERB) gofmt -s -w `find . -name \*\.go`
+
 gofmt_test:
 	$(VERB) echo "gofmt test"
 	$(VERB) ./gofmt_test.sh

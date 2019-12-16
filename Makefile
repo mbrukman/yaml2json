@@ -64,5 +64,5 @@ py-test: py_yaml_to_json_test
 
 test: go-test py-test
 
-regen: build
+regen: go-build
 	$(VERB) ./regen.sh

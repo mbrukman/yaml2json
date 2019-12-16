@@ -14,7 +14,7 @@
 
 VERB = @
 ifeq ($(VERBOSE),1)
-	VER =
+	VERB =
 endif
 
 THIRD_PARTY_PYTHON = third_party/python
@@ -25,7 +25,7 @@ THIRD_PARTY_PYTHON = third_party/python
 py-install:
 	$(VERB) pip install -r requirements.txt -t "$(THIRD_PARTY_PYTHON)"
 
-build: yaml2json
+go-build: yaml2json
 
 # For now, our binary only includes a single Go file; if this were to change, we
 # would need to dynamically discover the full set of local dependencies to
@@ -38,9 +38,14 @@ clean:
 	$(VERB) rm -rf "$(THIRD_PARTY_PYTHON)"/*
 	$(VERB) rm -f yaml2json
 
-yaml_to_json_tests:
-	$(VERB) echo "YAML -> JSON tests"
-	$(VERB) ./run_tests.sh
+go_yaml_to_json_test:
+	$(VERB) echo "Go YAML -> JSON tests"
+	$(VERB) ./go_yaml_to_json_test.sh
+	$(VERB) echo
+
+py_yaml_to_json_test:
+	$(VERB) echo "Python YAML -> JSON tests"
+	$(VERB) ./py_yaml_to_json_test.sh
 	$(VERB) echo
 
 gofmt_test:
@@ -53,7 +58,11 @@ go_mod_tidy_test:
 	$(VERB) ./go_mod_tidy_test.sh
 	$(VERB) echo
 
-test: build yaml_to_json_tests gofmt_test go_mod_tidy_test
+go-test: go-build go_yaml_to_json_test gofmt_test go_mod_tidy_test
+
+py-test: py_yaml_to_json_test
+
+test: go-test py-test
 
 regen: build
 	$(VERB) ./regen.sh

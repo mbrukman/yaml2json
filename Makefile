@@ -32,7 +32,7 @@ go-build: yaml2json
 # include here.
 yaml2json: yaml2json.go
 	$(VERB) echo "Building Go binary ..."
-	$(VERB) go build ./...
+	$(VERB) go build .
 
 clean:
 	$(VERB) rm -rf "$(THIRD_PARTY_PYTHON)"/*
@@ -66,3 +66,12 @@ test: go-test py-test
 
 regen: go-build
 	$(VERB) ./regen.sh
+
+travis: .travis.yml
+
+json2yaml: cmd/json2yaml/json2yaml.go
+	$(VERB) go build ./cmd/json2yaml
+
+.travis.yml: .travis.jsonnet json2yaml
+	$(VERB) jsonnet "$<" | ./json2yaml > "$@"
+	$(VERB) autogen --no-tlc -c "Google LLC" -i "$@"

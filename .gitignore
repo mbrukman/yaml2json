@@ -1,5 +1,6 @@
-# Go binary
-yaml2json
+# Go binaries
+/yaml2json
+/json2yaml
 
 # Compiled Python bytecode
 *.pyc

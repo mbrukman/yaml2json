@@ -1,5 +1,7 @@
 # yaml2json
 
+[![Build Status](https://travis-ci.org/mbrukman/yaml2json.svg?branch=master)](https://travis-ci.org/mbrukman/yaml2json)
+
 This project provides a simple library and CLI for converting YAML to JSON,
 written separately in Python and Go.
 

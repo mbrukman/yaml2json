@@ -29,11 +29,13 @@ const (
 	indent      = 2
 )
 
+// YamlToJsonOptions provides settings for YAML-to-JSON conversion.
 type YamlToJsonOptions struct {
 	PrettyPrint bool
 	Indent      int
 }
 
+// YamlToJson converts input YAML data to a JSON string.
 func YamlToJson(yamlData []byte, options YamlToJsonOptions) string {
 	var o interface{}
 	yamlErr := yaml.Unmarshal(yamlData, &o)

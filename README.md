@@ -1,6 +1,12 @@
 # yaml2json
 
-[![Build Status](https://travis-ci.org/mbrukman/yaml2json.svg?branch=master)](https://travis-ci.org/mbrukman/yaml2json)
+[![Build Status][travis-badge]][travis-url]
+[![Go Report Card][go-report-card-badge]][go-report-card-url]
+
+[travis-badge]: https://travis-ci.org/mbrukman/yaml2json.svg?branch=master
+[travis-url]: https://travis-ci.org/mbrukman/yaml2json
+[go-report-card-badge]: https://goreportcard.com/badge/github.com/mbrukman/yaml2json
+[go-report-card-url]: https://goreportcard.com/report/github.com/mbrukman/yaml2json
 
 This project provides a simple library and CLI for converting YAML to JSON,
 written separately in Python and Go.

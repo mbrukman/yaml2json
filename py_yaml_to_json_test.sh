@@ -23,7 +23,7 @@ for yaml in testdata/*.yaml; do
   json="${yaml/%.yaml}.json"
 
   echo "Testing: ${yaml} in Python ..."
-  diff -u <(./yaml2json.py < "${yaml}") "${json}"
+  diff -u <(./python/yaml2json.py < "${yaml}") "${json}"
   if [ $? -eq 0 ];  then
     (( py_passed += 1 ))
   else

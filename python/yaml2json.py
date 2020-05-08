@@ -25,7 +25,7 @@ import sys
 # system install as well, if it's available). Local install can be done easily
 # via `make py-install` using the Makefile provided in this directory.
 from os.path import dirname
-sys.path.append(os.path.join(dirname(__file__), 'third_party', 'python'))
+sys.path.append(os.path.join(dirname(__file__), '..', 'third_party', 'python'))
 
 
 try:

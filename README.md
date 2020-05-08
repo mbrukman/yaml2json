@@ -11,6 +11,35 @@
 This project provides a simple library and CLI for converting YAML to JSON,
 written separately in Python and Go.
 
+# Usage
+
+Build the Go utilities:
+
+```shell
+$ go get -u github.com/mbrukman/yaml2json/cmd/yaml2json
+$ go get -u github.com/mbrukman/yaml2json/cmd/json2yaml
+```
+
+Convert YAML &rarr; JSON:
+
+```shell
+# read from stdin
+$ [... generate some YAML...] | yaml2json
+
+# read from a file
+$ yaml2json foo.yaml
+```
+
+Convert JSON &rarr; YAML:
+
+```shell
+# read from stdin
+$ [... generate some JSON...] | json2yaml
+
+# read from a file
+$ json2yaml foo.yaml
+```
+
 # Motivation
 
 Some programs and utilities only support JSON as their configuration input

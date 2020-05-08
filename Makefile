@@ -27,12 +27,9 @@ py-install:
 
 go-build: yaml2json
 
-# For now, our binary only includes a single Go file; if this were to change, we
-# would need to dynamically discover the full set of local dependencies to
-# include here.
-yaml2json: yaml2json.go
+yaml2json: cmd/yaml2json/yaml2json.go
 	$(VERB) echo "Building Go binary ..."
-	$(VERB) go build .
+	$(VERB) go build ./cmd/yaml2json
 
 clean:
 	$(VERB) rm -rf "$(THIRD_PARTY_PYTHON)"/*

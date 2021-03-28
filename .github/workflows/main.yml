@@ -1,0 +1,71 @@
+# Copyright 2021 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: "Build & test"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  python-build-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        # TODO(mbrukman): fix the Python package installation on macOS to fix
+        # these failures:
+        # * https://github.com/mbrukman/yaml2json/runs/2213742057?check_suite_focus=true
+        # * https://github.com/mbrukman/yaml2json/runs/2213742072?check_suite_focus=true
+        os: [ 'ubuntu-20.04' ]
+        python: [ '3.6', '3.7', '3.8' ]
+    name: Python ${{ matrix.python }} (${{ matrix.os }})
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies
+        run: make py-install VERBOSE=1
+
+      - name: Run tests
+        run: make py-test VERBOSE=1
+
+  go-build-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ 'ubuntu-20.04', 'macos-10.15' ]
+        go: [ '1.16', '1.15', '1.14', '1.13', '1.12' ]
+    name: Go ${{ matrix.go }} (${{ matrix.os }})
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Build binaries
+        run: make go-build VERBOSE=1
+
+      - name: Run tests
+        run: make go-test VERBOSE=1

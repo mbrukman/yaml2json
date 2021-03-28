@@ -25,11 +25,14 @@ THIRD_PARTY_PYTHON = third_party/python
 py-install:
 	$(VERB) pip install -r requirements.txt -t "$(THIRD_PARTY_PYTHON)"
 
-go-build: yaml2json
+go-build: yaml2json json2yaml
 
 yaml2json: cmd/yaml2json/yaml2json.go
 	$(VERB) echo "Building Go binary ..."
 	$(VERB) go build ./cmd/yaml2json
+
+json2yaml: cmd/json2yaml/json2yaml.go
+	$(VERB) go build ./cmd/json2yaml
 
 clean:
 	$(VERB) rm -rf "$(THIRD_PARTY_PYTHON)"/*
@@ -46,7 +49,7 @@ py_yaml_to_json_test:
 	$(VERB) echo
 
 gofmt:
-	$(VERB) gofmt -s -w `find . -name \*\.go`
+	$(VERB) gofmt -s -w `find . -name '*.go'`
 
 gofmt_test:
 	$(VERB) echo "gofmt test"
@@ -66,12 +69,3 @@ test: go-test py-test
 
 regen: go-build
 	$(VERB) ./regen.sh
-
-travis: .travis.yml
-
-json2yaml: cmd/json2yaml/json2yaml.go
-	$(VERB) go build ./cmd/json2yaml
-
-.travis.yml: .travis.jsonnet json2yaml
-	$(VERB) jsonnet "$<" | ./json2yaml > "$@"
-	$(VERB) autogen --no-tlc -c "Google LLC" -i "$@"

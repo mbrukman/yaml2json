@@ -36,8 +36,10 @@ Convert JSON &rarr; YAML:
 $ [... generate some JSON...] | json2yaml
 
 # read from a file
-$ json2yaml foo.yaml
+$ json2yaml foo.json
 ```
+
+In all cases, the output is to stdout.
 
 # Motivation
 

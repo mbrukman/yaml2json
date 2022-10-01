@@ -38,9 +38,19 @@ clean:
 	$(VERB) rm -rf "$(THIRD_PARTY_PYTHON)"/*
 	$(VERB) rm -f yaml2json
 
+go_json_to_yaml_test:
+	$(VERB) echo "Go JSON -> YAML tests"
+	$(VERB) ./json_to_yaml_test.sh Go ./json2yaml
+	$(VERB) echo
+
 go_yaml_to_json_test:
 	$(VERB) echo "Go YAML -> JSON tests"
 	$(VERB) ./yaml_to_json_test.sh Go ./yaml2json
+	$(VERB) echo
+
+py_json_to_yaml_test:
+	$(VERB) echo "Python JSON -> YAML tests"
+	$(VERB) ./json_to_yaml_test.sh Python "python python/json2yaml.py"
 	$(VERB) echo
 
 py_yaml_to_json_test:
@@ -61,9 +71,9 @@ go_mod_tidy_test:
 	$(VERB) ./go_mod_tidy_test.sh
 	$(VERB) echo
 
-go-test: go-build go_yaml_to_json_test gofmt_test go_mod_tidy_test
+go-test: go-build go_json_to_yaml_test go_yaml_to_json_test gofmt_test go_mod_tidy_test
 
-py-test: py_yaml_to_json_test
+py-test: py_json_to_yaml_test py_yaml_to_json_test
 
 test: go-test py-test
 

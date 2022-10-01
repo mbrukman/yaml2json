@@ -69,3 +69,6 @@ jobs:
 
       - name: Run tests
         run: make go-test VERBOSE=1
+
+      - name: Regenerate test outputs
+        run: make regen

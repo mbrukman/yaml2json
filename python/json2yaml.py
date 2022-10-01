@@ -38,30 +38,25 @@ except:
     sys.exit(1)
 
 
-def YamlToJson(yaml_str, options):
-    data = yaml.safe_load(yaml_str)
-    if options.pretty_print:
-        return json.dumps(data, sort_keys=True, indent=options.indent,
-                          separators=(',', ': '))
-    else:
-        return json.dumps(data, sort_keys=True, separators=(',', ':'))
+def JsonToYaml(json_str, options):
+    data = json.loads(json_str)
+    return yaml.dump(data, indent=options.indent)
 
 
-class YamlToJsonOptions:
-    pretty_print: bool = True
+class JsonToYamlOptions:
     indent: int = 2
 
 
 def main(argv):
     if len(argv) < 2:
-        yaml_data = sys.stdin.read()
+        json_data = sys.stdin.read()
     else:
         filename = argv[1]
-        with open(filename) as yaml_input:
-            yaml_data = yaml_input.read()
+        with open(filename) as json_input:
+            json_data = json_input.read()
 
-    options = YamlToJsonOptions()
-    print(YamlToJson(yaml_data, options))
+    options = JsonToYamlOptions()
+    print(JsonToYaml(json_data, options))
 
 
 if __name__ == '__main__':

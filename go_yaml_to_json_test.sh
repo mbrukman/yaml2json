@@ -19,7 +19,7 @@
 declare -i go_passed=0
 declare -i go_total=0
 
-for yaml in testdata/*.yaml; do
+for yaml in testdata/yaml2json/*.yaml; do
   json="${yaml/%.yaml}.json"
 
   echo "Testing: ${yaml} in Go ..."

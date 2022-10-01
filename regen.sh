@@ -16,7 +16,7 @@
 
 # Regenerate the JSON test outputs, given existing YAML test inputs.
 
-for yaml in testdata/*.yaml; do
+for yaml in testdata/yaml2json/*.yaml; do
   json="${yaml/%.yaml}.json"
   ./yaml2json < "${yaml}" > "${json}"
 done

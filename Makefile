@@ -23,7 +23,7 @@ THIRD_PARTY_PYTHON = third_party/python
 	$(VERB) echo "Available targets: py-install, clean, build, test, regen"
 
 py-install:
-	$(VERB) pip install -r requirements.txt -t "$(THIRD_PARTY_PYTHON)"
+	$(VERB) python -m pip install -r requirements.txt -t "$(THIRD_PARTY_PYTHON)"
 
 go-build: yaml2json json2yaml
 

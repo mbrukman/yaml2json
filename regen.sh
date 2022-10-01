@@ -14,9 +14,30 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Regenerate the JSON test outputs, given existing YAML test inputs.
+# Regenerate test outputs for test inputs (YAML -> JSON and vice versa).
 
+if ! [ -e ./yaml2json ]; then
+  echo "Missing ./yaml2json binary; run 'make go-build' first." >&2
+	exit 1
+fi
+
+# Regenerate YAML -> JSON test outputs.
+echo -n "Updating YAML -> JSON test outputs ... "
 for yaml in testdata/yaml2json/*.yaml; do
   json="${yaml/%.yaml}.json"
   ./yaml2json < "${yaml}" > "${json}"
 done
+echo "done."
+
+if ! [ -e ./json2yaml ]; then
+  echo "Missing ./json2yaml binary; run 'make go-build' first." >&2
+	exit 2
+fi
+
+# Regenerate JSON -> YAML test outputs.
+echo -n "Updating JSON -> YAML test outputs ... "
+for json in testdata/json2yaml/*.json; do
+  yaml="${json/%.json}.yaml"
+  ./json2yaml < "${json}" > "${yaml}"
+done
+echo "done."

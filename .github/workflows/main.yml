@@ -30,8 +30,8 @@ jobs:
         # these failures:
         # * https://github.com/mbrukman/yaml2json/runs/2213742057?check_suite_focus=true
         # * https://github.com/mbrukman/yaml2json/runs/2213742072?check_suite_focus=true
-        os: [ 'ubuntu-20.04' ]
-        python: [ '3.6', '3.7', '3.8' ]
+        os: [ 'ubuntu-22.04', 'ubuntu-20.04' ]
+        python: [ '3.10', '3.9', '3.8', '3.7' ]
     name: Python ${{ matrix.python }} (${{ matrix.os }})
     steps:
       - name: Checkout repo
@@ -52,8 +52,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ 'ubuntu-20.04', 'macos-10.15' ]
-        go: [ '1.16', '1.15', '1.14', '1.13', '1.12' ]
+        os: [ 'ubuntu-22.04', 'ubuntu-20.04', 'macos-12', 'macos-11' ]
+        go: [ '1.18', '1.17', '1.16', '1.15', '1.14', '1.13', '1.12' ]
     name: Go ${{ matrix.go }} (${{ matrix.os }})
     steps:
       - name: Checkout repo

@@ -40,12 +40,12 @@ clean:
 
 go_yaml_to_json_test:
 	$(VERB) echo "Go YAML -> JSON tests"
-	$(VERB) ./go_yaml_to_json_test.sh
+	$(VERB) ./yaml_to_json_test.sh Go ./yaml2json
 	$(VERB) echo
 
 py_yaml_to_json_test:
 	$(VERB) echo "Python YAML -> JSON tests"
-	$(VERB) ./py_yaml_to_json_test.sh
+	$(VERB) ./yaml_to_json_test.sh Python "python python/yaml2json.py"
 	$(VERB) echo
 
 gofmt:

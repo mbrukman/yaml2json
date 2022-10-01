@@ -19,11 +19,11 @@
 declare -i py_passed=0
 declare -i py_total=0
 
-for yaml in testdata/*.yaml; do
+for yaml in testdata/yaml2json/*.yaml; do
   json="${yaml/%.yaml}.json"
 
   echo "Testing: ${yaml} in Python ..."
-  diff -u <(./python/yaml2json.py < "${yaml}") "${json}"
+  diff -u <(python ./python/yaml2json.py < "${yaml}") "${json}"
   if [ $? -eq 0 ];  then
     (( py_passed += 1 ))
   else

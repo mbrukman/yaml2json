@@ -13,10 +13,10 @@ written separately in Python and Go.
 
 # Usage
 
-Build the Go utilities:
+Install the Go utilities:
 
 ```shell
-$ go get -u github.com/mbrukman/yaml2json/cmd/{yaml2json,json2yaml}
+$ go install github.com/mbrukman/yaml2json/cmd/{yaml2json,json2yaml}@latest
 ```
 
 Convert YAML &rarr; JSON:

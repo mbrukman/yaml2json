@@ -41,6 +41,9 @@ $ json2yaml foo.json
 
 In all cases, the output is to stdout.
 
+For the equivalent Python implementations, see the [`python`](python) directory
+for details.
+
 # Motivation
 
 Some programs and utilities only support JSON as their configuration input

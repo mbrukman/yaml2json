@@ -30,8 +30,11 @@ jobs:
         # these failures:
         # * https://github.com/mbrukman/yaml2json/runs/2213742057?check_suite_focus=true
         # * https://github.com/mbrukman/yaml2json/runs/2213742072?check_suite_focus=true
-        os: [ 'ubuntu-22.04', 'ubuntu-20.04' ]
-        python: [ '3.10', '3.9', '3.8', '3.7' ]
+        #
+        # Python 3.7 is no longer supported on x86_64:
+        # https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+        os: [ 'ubuntu-24.04', 'ubuntu-22.04' ]
+        python: [ '3.10', '3.9', '3.8' ]
     name: Python ${{ matrix.python }} (${{ matrix.os }})
     steps:
       - name: Checkout repo
@@ -52,7 +55,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ 'ubuntu-22.04', 'ubuntu-20.04', 'macos-12', 'macos-11' ]
+        os: [ 'ubuntu-24.04', 'ubuntu-22.04', 'macos-13', 'macos-12' ]
         go: [ '1.18', '1.17', '1.16', '1.15', '1.14', '1.13', '1.12' ]
     name: Go ${{ matrix.go }} (${{ matrix.os }})
     steps:

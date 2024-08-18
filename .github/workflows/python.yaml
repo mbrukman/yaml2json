@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: "Build & test"
+name: "Python"
 
 on:
   push:
@@ -31,8 +31,7 @@ on:
     - cron: '1 2 3 * *'  # run at 2:01 every month on the 3rd day
 
 jobs:
-
-  python-build-test:
+  build-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -60,28 +59,3 @@ jobs:
 
       - name: Run tests
         run: make py-test VERBOSE=1
-
-  go-build-test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ 'ubuntu-24.04', 'ubuntu-22.04', 'macos-13', 'macos-12' ]
-        go: [ '1.18', '1.17', '1.16', '1.15', '1.14', '1.13', '1.12' ]
-    name: Go ${{ matrix.go }} (${{ matrix.os }})
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ matrix.go }}
-
-      - name: Build binaries
-        run: make go-build VERBOSE=1
-
-      - name: Run tests
-        run: make go-test VERBOSE=1
-
-      - name: Regenerate test outputs
-        run: make regen

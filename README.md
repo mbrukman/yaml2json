@@ -6,8 +6,8 @@
 
 [github-python-ci-badge]: https://github.com/mbrukman/yaml2json/actions/workflows/python.yaml/badge.svg?query=branch%3Amain
 [github-python-ci-url]: https://github.com/mbrukman/yaml2json/actions/workflows/python.yaml?query=branch%3Amain
-[github-go-ci-badge]: https://github-go.com/mbrukman/yaml2json/actions/workflows/go.yaml/badge.svg?query=branch%3Amain
-[github-go-ci-url]: https://github-go.com/mbrukman/yaml2json/actions/workflows/go.yaml?query=branch%3Amain
+[github-go-ci-badge]: https://github.com/mbrukman/yaml2json/actions/workflows/go.yaml/badge.svg?query=branch%3Amain
+[github-go-ci-url]: https://github.com/mbrukman/yaml2json/actions/workflows/go.yaml?query=branch%3Amain
 [go-report-card-badge]: https://goreportcard.com/badge/github.com/mbrukman/yaml2json
 [go-report-card-url]: https://goreportcard.com/report/github.com/mbrukman/yaml2json
 

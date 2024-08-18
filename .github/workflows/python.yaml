@@ -35,6 +35,7 @@ on:
 
   pull_request:
     branches: [ main ]
+    paths:
         # Python source files
       - '**/*.py'
         # Python config files

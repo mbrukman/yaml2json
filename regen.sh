@@ -18,7 +18,7 @@
 
 if ! [ -e ./yaml2json ]; then
   echo "Missing ./yaml2json binary; run 'make go-build' first." >&2
-	exit 1
+  exit 1
 fi
 
 # Regenerate YAML -> JSON test outputs.
@@ -31,7 +31,7 @@ echo "done."
 
 if ! [ -e ./json2yaml ]; then
   echo "Missing ./json2yaml binary; run 'make go-build' first." >&2
-	exit 2
+  exit 2
 fi
 
 # Regenerate JSON -> YAML test outputs.

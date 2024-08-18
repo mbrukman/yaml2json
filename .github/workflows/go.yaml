@@ -14,11 +14,48 @@
 
 name: "Go"
 
+# GitHub Actions does not support anchors:
+# https://github.com/actions/runner/issues/1182
+# so we need to duplicate paths below and manually keep them in sync.
 on:
   push:
     branches: [ main ]
+    paths:
+        # Go source files
+      - '**/*.go'
+        # Go config files
+      - 'go.mod'
+      - 'go.sum'
+        # Go-relevant shell scripts
+      - 'go*.sh'
+      - 'regen.sh'
+        # Cross-language build files and scripts
+      - 'Makefile'
+      - 'json_to_yaml_test.sh'
+        # Test data
+      - 'testdata/**'
+        # Go CI configs
+      - '.github/workflows/go.yaml' # this file
+
   pull_request:
     branches: [ main ]
+    paths:
+        # Go source files
+      - '**/*.go'
+        # Go config files
+      - 'go.mod'
+      - 'go.sum'
+        # Go-relevant shell scripts
+      - 'go*.sh'
+      - 'regen.sh'
+        # Cross-language build files and scripts
+      - 'Makefile'
+      - 'json_to_yaml_test.sh'
+        # Test data
+      - 'testdata/**'
+        # Go CI configs
+      - '.github/workflows/go.yaml' # this file
+
   schedule:
       # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
       #

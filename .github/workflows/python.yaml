@@ -71,7 +71,7 @@ jobs:
         #
         # Python 3.7 is no longer supported on x86_64:
         # https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-        os: [ 'ubuntu-24.04', 'ubuntu-22.04' ]
+        os: [ 'ubuntu-24.04' ]
         python: [ '3.10', '3.9', '3.8' ]
     name: Python ${{ matrix.python }} (${{ matrix.os }})
     steps:
